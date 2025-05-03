@@ -22,9 +22,7 @@ O sistema tem como principal objetivo o **cadastro e gerenciamento de certificad
 *(Colocar requisitos aqui)*
 
 ## 🏗️ Arquitetura em Alto Nível
-
-*(Colocar diagrama aqui — pode ser um PNG/JPG ou link para draw.io, Lucidchart, etc.)*
-
+![image](https://github.com/user-attachments/assets/577f65ad-e587-43e3-b314-e39427a0ebb6)
 
 
 ## ⚙️ Pré-requisitos para execução
