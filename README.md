@@ -19,7 +19,15 @@ O sistema tem como principal objetivo o **cadastro e gerenciamento de certificad
 
 ## Requisitos Funcionais
 
-*(Colocar requisitos aqui)*
+| Funcionalidade            | Descrição             | 
+| --------------- | -------------------------------- |
+| Autenticação de usuário | O sistema deve permitir o acesso seguro do usuário as suas funcionalidades |
+| Cadastro dos voluntários | O sistema deve permitir o cadastro dos voluntários do projeto |
+| Gerenciamento dos voluntários | O sistema deve permitir a alteração e exclusão dos voluntários cadastrados |
+| Cadastro de voluntário com acesso ao sistema | O sistema deve permitir que os usuários com acesso ao sistema cadastrem outros usuários para acessar o sistema, estes, devem já estar cadastrados como coordenador ou voluntário no sistema |
+| Cadastro dos certificados dos voluntários | O sistema deve permitir o cadastro dos certificados dos voluntários |
+| Gerenciamento dos certificados | O sistema deve permitir a exclusão dos certificados dos voluntários |
+
 
 ## 🏗️ Arquitetura em Alto Nível
 ![image](https://github.com/user-attachments/assets/577f65ad-e587-43e3-b314-e39427a0ebb6)
