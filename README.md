@@ -38,8 +38,7 @@ O sistema tem como principal objetivo o **cadastro e gerenciamento de certificad
 
 1. **Clone o repositório**
    ```bash
-   git clone https://github.com/seu-usuario/ellp.git
-   cd ellp
+   git clone https://github.com/DanielaRodrigueS2/Oficina-de-Integracao-2-ELLP.git
    ```
 
 2. **Configure o ambiente**
@@ -60,5 +59,5 @@ O sistema tem como principal objetivo o **cadastro e gerenciamento de certificad
 | Nome            | GitHub                           | Papel              |
 | --------------- | -------------------------------- | ------------------ |
 | Daniela Rodrigues Couto  | [@danielaRodrigues](https://github.com/DanielaRodrigueS2)   | Desenvolvedora Backend |
-| Marcelo Gregório Vieira  | [@MarceloGregório](https://github.com/ColocaOSeuAquiMArccelo) | Desenvolvedor FrontEnd |
+| Marcelo Gregório Vieira  | [@MarceloGregório](https://github.com/marcelomgv) | Desenvolvedor FrontEnd |
 

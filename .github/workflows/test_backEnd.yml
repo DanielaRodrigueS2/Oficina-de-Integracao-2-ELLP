@@ -1,0 +1,36 @@
+name: Execução de testes pré-commit backEnd
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'backEnd/**'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'backEnd/**'
+
+jobs:
+  e2e-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do projeto
+        uses: actions/checkout@v4
+
+      - name: Configuração do Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Instalar dependências
+        run: npm install
+        working-directory: backEnd
+
+      - name: Build
+        run: npm run build --if-present
+        working-directory: backEnd
+
+      - name: Executar testes
+        run: npm test
+        working-directory: backEnd
