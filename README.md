@@ -19,6 +19,8 @@ O sistema tem como principal objetivo o **cadastro e gerenciamento de certificad
 
 ## Requisitos Funcionais
 
+Visando desenvolver um sistema que auxilie no gerenciamento e controle dos voluntários ativos e de seus certificados, as seguintes funcionalidades foram levantadas:
+
 | Funcionalidade            | Descrição             | 
 | --------------- | -------------------------------- |
 | Autenticação de usuário | O sistema deve permitir o acesso seguro do usuário as suas funcionalidades |
