@@ -40,11 +40,39 @@ module.exports = {
     },
 
     async getVoluntario(req,res){
+        try{
+            const {idVoluntario} = req.params;
 
+            const voluntario = await db
+                .collection('voluntarios')
+                .doc(idVoluntario)
+                .get();
+
+            if(!voluntario.exists){
+                return res.status(404).json({error: 'Voluntaario nao exisste ou não foi encontrado'});
+            }
+            
+            return res.json({id : voluntario.id, ...voluntario.data()})
+        }
+        catch(erro){
+            return res.status(500).json({error : 'Erro ao buscar voluntario', msg: erro})
+        }
     },
 
     async deletaVoluntario(req,res){
+        try{
+            const {idVoluntario} = req.params;
 
+            await db
+                .collection('voluntarios')
+                .doc(idVoluntario)
+                .delete()
+
+            return res.status(204).send();
+        }
+        catch(erro){
+            return res.status(500).json({error: 'Erro ao excluir voluntario', msg: erro})
+        }
     },
 
 };

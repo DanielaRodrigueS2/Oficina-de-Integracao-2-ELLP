@@ -39,18 +39,93 @@ module.exports = {
         
     },
 
+    // Lista certificados dependendo do voluntario (talvez não seja utilizado)
     async listarCertificados(req, res){
+        try{
+            const {idVoluntario} = req.params
 
+            const snapshot = await db
+                .collection('voluntarios')
+                .doc(idVoluntario)
+                .collection('certificados')
+                .get();
+            
+            const certificados = snapshot.docs.map(doc => ({
+                id : doc.id,
+                ...doc.data(),
+            }))
+
+            return res.json(certificados)
+
+
+        }
+        catch(erro){
+            return res.status(500).json({error : 'erro ao buscar os certificados ddesse voluntaario', msg: erro})
+        }
 
     },
 
+    // Lista todos os certificados
     async listarTodosCertificados(req, res){
+        try{
+            const snapshot = await db.CollectionGroup('certificados').get()
 
+            const certificados = snapshot.docs.map(doc => ({
+                id: doc.id,
+                ...doc.data()
+
+            }))
+
+            return res.json(certificados)
+        }
+        catch(erro){
+            return res.status(500).json({error : 'Erro ao listar todooos os certificados ', msg: erro})
+            
+        }
+    },
+
+    async deletarCertificado(req, res){
+        try{
+            const {idVoluntario, idCertificado} = req.parans
+
+            await db 
+                .collection('voluntarios')
+                .doc(idVoluntario)
+                .collection('certificados')
+                .doc(idCertificado)
+                .delete();
+
+            return res.status(204).send();
+ 
+        }
+        catch(erro){
+            return res.status(500).json({error: 'Erro ao deletar certificado' , msg: erro})
+        }
     },
 
     async getCertificado(req,res){
+        try{
+            const {idVoluntario, idCertificado} = req.parans
 
-    }
+            const certificado = await db 
+                .collection('voluntarios')
+                .doc(idVoluntario)
+                .collection('certificados')
+                .doc(idCertificado)
+                .get();
+
+            if (!certificado.exists){
+                return res.status(404).json({error : 'Certificado nao foi encontrado ou nao existe'})
+            }
+
+            return res.json({id: certificado.id, ...certificado.data()})
+
+        }
+        catch(erro){
+            return res.status(500).json({error: 'Erro ao buscar certificado' , msg: erro})
+            
+        }
+    },
 
 
 };
