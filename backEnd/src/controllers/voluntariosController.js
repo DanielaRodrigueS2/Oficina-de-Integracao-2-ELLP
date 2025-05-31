@@ -4,21 +4,22 @@ module.exports = {
 
     async criarVoluntario(req, res){
         try{
-            const [nome, RA, endereco, curso, telefone, periodo, email, cargo] = req.body;
+            const [nome, RA, CPF, curso, telefone, departamento, email, funcao, situacao] = req.body;
 
             const novoVoluntario = {
                 nome,
                 RA,
-                endereco,
+                CPF,
                 curso,
                 telefone,
-                periodo,
+                departamento,
                 email,
-                cargo,
+                funcao,
+                situacao,
                 criacao : new Date()
             }
 
-            const documento = await db.collecion('voluntarios').add(novoVoluntario);
+            const documento = await db.collection('voluntarios').add(novoVoluntario);
             return res.status(201).json({id: documento.id, ...novoVoluntario});
 
         }
@@ -29,13 +30,21 @@ module.exports = {
 
     async getAllVoluntarios(req,res){
         try{
-            const snapshot = await db.collecion('voluntarios').get();
+            const snapshot = await db.collection('voluntarios').get();
             const voluntarios = snapshot.docs.map(doc => ({id: doc.id, ...doc.data() }));
             return res.json(voluntarios);
         }
         catch (erro){
             return res.status(500).json({error : 'Erro ao retornar todos os voluntarios ;p', msg: erro})
         }
-    }
+    },
+
+    async getVoluntario(req,res){
+
+    },
+
+    async deletaVoluntario(req,res){
+
+    },
 
 };
