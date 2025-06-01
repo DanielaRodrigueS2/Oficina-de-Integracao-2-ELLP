@@ -4,11 +4,11 @@ on:
   push:
     branches: [main]
     paths:
-      - 'frontEnd/**'
+      - 'front-end/**'
   pull_request:
     branches: [main]
     paths:
-      - 'frontEnd/**'
+      - 'front-end/**'
 
 jobs:
   e2e-tests:
@@ -25,12 +25,12 @@ jobs:
 
       - name: Instalar dependências
         run: npm install
-        working-directory: frontEnd
+        working-directory: front-end
 
       - name: Build
         run: npm run build --if-present
-        working-directory: frontEnd
+        working-directory: front-end
 
       - name: Executar testes
         run: npm test
-        working-directory: frontEnd
+        working-directory: front-end
