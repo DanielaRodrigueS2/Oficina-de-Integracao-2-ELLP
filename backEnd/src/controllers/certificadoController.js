@@ -34,7 +34,7 @@ module.exports = {
             return res.status(201).json({id : documento.id, ...novoCertificado})
         }
         catch (erro){
-            return res.status(500).json({error: 'Erro ao criar o certificado do voluntario', msg: erro})
+            return res.status(500).json({error: 'Erro ao criar o certificado do voluntario', msg: erro.message})
         }
         
     },
@@ -60,7 +60,7 @@ module.exports = {
 
         }
         catch(erro){
-            return res.status(500).json({error : 'erro ao buscar os certificados ddesse voluntaario', msg: erro})
+            return res.status(500).json({error : 'erro ao buscar os certificados ddesse voluntaario', msg: erro.message})
         }
 
     },
@@ -68,7 +68,7 @@ module.exports = {
     // Lista todos os certificados
     async listarTodosCertificados(req, res){
         try{
-            const snapshot = await db.CollectionGroup('certificados').get()
+            const snapshot = await db.collectionGroup('certificados').get()
 
             const certificados = snapshot.docs.map(doc => ({
                 id: doc.id,
@@ -79,14 +79,14 @@ module.exports = {
             return res.json(certificados)
         }
         catch(erro){
-            return res.status(500).json({error : 'Erro ao listar todooos os certificados ', msg: erro})
+            return res.status(500).json({error : 'Erro ao listar todooos os certificados ', msg: erro.message})
             
         }
     },
 
     async deletarCertificado(req, res){
         try{
-            const {idVoluntario, idCertificado} = req.parans
+            const {idVoluntario, idCertificado} = req.params
 
             await db 
                 .collection('voluntarios')
@@ -99,7 +99,7 @@ module.exports = {
  
         }
         catch(erro){
-            return res.status(500).json({error: 'Erro ao deletar certificado' , msg: erro})
+            return res.status(500).json({error: 'Erro ao deletar certificado' , msg: erro.message})
         }
     },
 
@@ -122,7 +122,7 @@ module.exports = {
 
         }
         catch(erro){
-            return res.status(500).json({error: 'Erro ao buscar certificado' , msg: erro})
+            return res.status(500).json({error: 'Erro ao buscar certificado' , msg: erro.message})
             
         }
     },

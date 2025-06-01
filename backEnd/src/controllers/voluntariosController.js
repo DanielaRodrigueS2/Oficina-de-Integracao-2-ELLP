@@ -4,7 +4,7 @@ module.exports = {
 
     async criarVoluntario(req, res){
         try{
-            const [nome, RA, CPF, curso, telefone, departamento, email, funcao, situacao] = req.body;
+            const {nome, RA, CPF, curso, telefone, departamento, email, funcao, situacao} = req.body;
 
             const novoVoluntario = {
                 nome,
@@ -24,7 +24,7 @@ module.exports = {
 
         }
         catch(erro){
-            return res.status(500).json({error : 'Erro ao criaqr voluntario ', msg: erro});
+            return res.status(500).json({error : 'Erro ao criaqr voluntario ', msg: erro.message});
         }
     },
 
@@ -35,7 +35,7 @@ module.exports = {
             return res.json(voluntarios);
         }
         catch (erro){
-            return res.status(500).json({error : 'Erro ao retornar todos os voluntarios ;p', msg: erro})
+            return res.status(500).json({error : 'Erro ao retornar todos os voluntarios ;p', msg: erro.message})
         }
     },
 
@@ -55,7 +55,7 @@ module.exports = {
             return res.json({id : voluntario.id, ...voluntario.data()})
         }
         catch(erro){
-            return res.status(500).json({error : 'Erro ao buscar voluntario', msg: erro})
+            return res.status(500).json({error : 'Erro ao buscar voluntario', msg: erro.message})
         }
     },
 
@@ -71,7 +71,7 @@ module.exports = {
             return res.status(204).send();
         }
         catch(erro){
-            return res.status(500).json({error: 'Erro ao excluir voluntario', msg: erro})
+            return res.status(500).json({error: 'Erro ao excluir voluntario', msg: erro.message})
         }
     },
 
