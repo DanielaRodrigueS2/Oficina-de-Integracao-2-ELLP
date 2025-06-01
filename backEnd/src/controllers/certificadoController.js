@@ -42,7 +42,7 @@ module.exports = {
     // Lista certificados dependendo do voluntario (talvez não seja utilizado)
     async listarCertificados(req, res){
         try{
-            const {idVoluntario} = req.params
+            const {idVoluntario} = req.params;
 
             const snapshot = await db
                 .collection('voluntarios')
@@ -86,7 +86,7 @@ module.exports = {
 
     async deletarCertificado(req, res){
         try{
-            const {idVoluntario, idCertificado} = req.params
+            const {idVoluntario, idCertificado} = req.params;
 
             await db 
                 .collection('voluntarios')
@@ -105,7 +105,7 @@ module.exports = {
 
     async getCertificado(req,res){
         try{
-            const {idVoluntario, idCertificado} = req.parans
+            const {idVoluntario, idCertificado} = req.params;
 
             const certificado = await db 
                 .collection('voluntarios')
