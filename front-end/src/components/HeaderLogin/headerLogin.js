@@ -4,12 +4,11 @@ import Link from "react-router-dom";
 function Header () {
     return (
         <header className={styles.header}>
-            <Link to='/'>
-                <img src='/images/Logotipo (Transparente) (1).png' alt='Logo ELLP'/>      
-            </Link>
+            <div>
+                <img src='/images/Logotipo (Transparente) (1).png' alt='Logo ELLP'/>   
+            </div>
 
             <nav>
-                <Link to='Voluntarios'>Voluntários</Link>
                 <Link to='/Certificados'>Certificados</Link>
             </nav>
         </header>
