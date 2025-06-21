@@ -1,4 +1,13 @@
 const db = require('../firebase/firestore')
+const yup = require('yup')
+
+const voluntarioSchema = yup.object().shape({
+
+
+
+
+
+});
 
 module.exports = {
 
