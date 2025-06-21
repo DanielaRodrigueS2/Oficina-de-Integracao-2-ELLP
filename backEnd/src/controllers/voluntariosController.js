@@ -2,10 +2,15 @@ const db = require('../firebase/firestore')
 const yup = require('yup')
 
 const voluntarioSchema = yup.object().shape({
-
-
-
-
+    nome: yup.string().required(),
+    RA: yup.string().required(),
+    CPF: yup.string().required(),
+    curso: yup.string().required() ,
+    telefone: yup.string().required(),
+    departamento: yup.string().required(),
+    email: yup.string().required(),
+    funcao: yup.string().required(),
+    situacao: yup.string().required(),
 
 });
 
@@ -13,7 +18,22 @@ module.exports = {
 
     async criarVoluntario(req, res){
         try{
+            
+            await voluntarioSchema.validate(req.body)
+
             const {nome, RA, CPF, curso, telefone, departamento, email, funcao, situacao} = req.body;
+
+            const cpfExiste = await db.collection('voluntarios').where('CPF', '==', CPF).get()
+
+            if (!cpfExiste.empty){
+                return res.status(409).json({error: 'Cpf já está cadastrado no ssitema'})
+            }
+
+            const raExiste = await db.collection('voluntarios').where('RA', '==', RA).get()
+            
+            if (!raExiste.empty){
+                return res.status(409).json({error: 'RA já está cadastrado no ssitema'})
+            }
 
             const novoVoluntario = {
                 nome,
