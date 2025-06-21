@@ -2,8 +2,8 @@ const db = require('../firebase/firestore')
 const yup = require('yup')
 
 const certificadoSchema = yup.object().shape({
-    semestre: yup.string().required(),
-    dataEmissao: yup.string().required()
+    semestre: yup.number().required(),
+    dataEmissao: yup.Date().required()
 });
 
 
@@ -11,6 +11,9 @@ module.exports = {
 
     async criarCertificado(req, res){
         try{
+
+            await certificadoSchema.validate(req.body)
+
             const {idVoluntario} = req.params;
             const {semestre, dataEmissao} = req.body;
             const voluntarioDoc = await db.collection('voluntarios').doc(idVoluntario).get();

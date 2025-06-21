@@ -1,6 +1,7 @@
 const db = require('../firebase/firestore')
 const yup = require('yup')
 
+// Adicionar validacoes para RA, CPF, etc
 const voluntarioSchema = yup.object().shape({
     nome: yup.string().required(),
     RA: yup.string().required(),
@@ -8,7 +9,7 @@ const voluntarioSchema = yup.object().shape({
     curso: yup.string().required() ,
     telefone: yup.string().required(),
     departamento: yup.string().required(),
-    email: yup.string().required(),
+    email: yup.string().email().required(),
     funcao: yup.string().required(),
     situacao: yup.string().required(),
 
