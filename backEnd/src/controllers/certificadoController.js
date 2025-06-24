@@ -3,7 +3,7 @@ const yup = require('yup')
 
 const certificadoSchema = yup.object().shape({
     semestre: yup.number().required(),
-    dataEmissao: yup.Date().required()
+    dataEmissao: yup.date().required()
 });
 
 
