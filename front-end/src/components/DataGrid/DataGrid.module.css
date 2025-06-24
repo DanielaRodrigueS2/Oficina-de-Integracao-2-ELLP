@@ -1,0 +1,14 @@
+.container {
+  height: 500px; 
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 2%;
+}
+
+.datagrid {
+  background-color: #D9D9D990;
+  width: 100%; 
+  height: 100%; 
+}
