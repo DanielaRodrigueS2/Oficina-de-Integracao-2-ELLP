@@ -1,7 +1,6 @@
 const db = require('../firebase/firestore')
 const yup = require('yup')
 const PDFDocument = require("pdfkit");
-const { db } = require("../firebase/firestore");
 
 const certificadoSchema = yup.object().shape({
     oficina: yup.string().required(),
