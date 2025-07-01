@@ -24,7 +24,7 @@ export default function Certificados() {
           size="small"
           onClick={() =>
             window.open(
-              `${import.meta.env.VITE_API_BASE_URL || "http://localhost:3000"}/certificados/download/${params.row.idVoluntario}/${params.row.id}`,
+              `${process.env.REACT_APP_API_BASE_URL || "http://localhost:3000"}/certificados/download/${params.row.idVoluntario}/${params.row.id}`,
               "_blank"
             )
           }
