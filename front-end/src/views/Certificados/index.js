@@ -41,8 +41,6 @@ export default function Certificados() {
       try {
         const resposta = await api.get("/certificados");
         setCertificados(resposta.data);
-        console.log(certificados)
-        console.log(resposta)
       } catch (erro) {
         console.error("Erro ao buscar certificados:", erro);
       }
