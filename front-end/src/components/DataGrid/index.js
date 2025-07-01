@@ -2,11 +2,11 @@ import { useState } from "react";
 import { DataGrid as MuiDataGrid } from "@mui/x-data-grid";
 import { Box, TextField } from "@mui/material";
 
-export default function DataGrid({ rows, columns, onRowClick }) {
+export default function DataGrid({ rows, columns, onRowClick, filterField }) {
   const [search, setSearch] = useState("");
 
   const filteredRows = rows.filter((row) =>
-    row.nomeVoluntario?.toLowerCase().includes(search.toLowerCase())
+    row[filterField]?.toLowerCase().includes(search.toLowerCase())
   );
 
   return (

@@ -53,7 +53,7 @@ export default function Certificados() {
     <div className={styles.container}>
       <Header />
       <div className={styles.content}>
-        <DataGrid rows={certificados} columns={colunas} />
+        <DataGrid rows={certificados} columns={colunas} filterField={"nomeVoluntario"}/>
       </div>
     </div>
   );

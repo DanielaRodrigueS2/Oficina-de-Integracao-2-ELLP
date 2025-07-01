@@ -71,6 +71,7 @@ export default function ListaVoluntarios() {
     async function carregarVoluntarios() {
       try {
         const resposta = await api.get("/voluntarios");
+        console.log("Resposta voluntarios:", resposta.data);
         const linhasFormatadas = resposta.data.map((v) => ({
           id: v.id,
           nome: v.nome,
@@ -91,7 +92,7 @@ export default function ListaVoluntarios() {
     <div className={styles.container}>
       <Header />
       <div className={styles.content}>
-        <DataGrid rows={voluntarios} columns={colunas} onRowClick={handleRowClick}/>
+        <DataGrid rows={voluntarios} columns={colunas} onRowClick={handleRowClick} filterField={'nome'}/>
       </div>
     </div>
   );
