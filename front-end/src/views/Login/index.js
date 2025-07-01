@@ -9,12 +9,12 @@ export default function Login() {
   return (
     <div className={styles.container}>
       <div className={styles.topbar}>
-        <div>
+        <Link to='/'>
           <img src="/images/Logotipo (Transparente) (1).png" alt="Logo ELLP" className={styles.logoImg} />
-        </div>
+        </Link>
         <div className={styles.buttongroup}>
           <button className={styles.btn} onClick={() => setShowLogin(true)}>Entrar</button>
-          <Link to='/certificados'>
+          <Link to='/certificadosLogOut'>
             <button className={styles.btn}>Certificados</button>
           </Link>
         </div>

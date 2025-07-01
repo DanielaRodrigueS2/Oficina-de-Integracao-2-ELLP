@@ -18,7 +18,7 @@ export default function ListaVoluntarios() {
     {
       field: "acoes",
       headerName: "Ações",
-      width: 200,
+      width: 400,
       sortable: false,
       filterable: false,
       renderCell: (params) => (

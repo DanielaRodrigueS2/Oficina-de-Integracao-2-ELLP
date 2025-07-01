@@ -19,7 +19,7 @@ export default function EmissaoCertificado() {
         e.preventDefault();
 
         try {
-            const response = await api.post(
+            await api.post(
                 `/voluntarios/${idVoluntario}/certificados`,
                 {
                     oficina,
@@ -34,15 +34,7 @@ export default function EmissaoCertificado() {
                 }
             );
 
-            const url = window.URL.createObjectURL(new Blob([response.data], { type: 'application/pdf' }));
-            const link = document.createElement('a');
-            link.href = url;
-            link.setAttribute('download', `certificado-${idVoluntario}.pdf`);
-            document.body.appendChild(link);
-            link.click();
-            link.remove();
-
-            alert("Certificado gerado e baixado com sucesso!");
+            alert("Certificado gerado com sucesso!");
             navigate("/ListaVoluntarios");
         } catch (error) {
             console.error(error);
@@ -133,7 +125,12 @@ export default function EmissaoCertificado() {
                         <button
                             type="button"
                             className={styles.btnCancelar}
-                            onClick={() => navigate("/ListaVoluntarios")}
+                            onClick={() => {
+                                const confirmar = window.confirm("Tem certeza que deseja cancelar? Todas as alterações serão perdidas.");
+                                if (confirmar) {
+                                    navigate("/ListaVoluntarios");
+                                }
+                            }}
                         >
                             Cancelar
                         </button>

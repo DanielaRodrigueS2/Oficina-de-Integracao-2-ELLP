@@ -6,6 +6,7 @@ import ListaVoluntarios from "./views/ListaVoluntarios";
 import Certificados from "./views/Certificados";
 import EmissaoCertificado from "./views/EmissaoCertificado";
 import GerenciaVoluntario from "./views/GerenciaVoluntario";
+import CertificadosLogOut from "./views/CertificadosLogOut";
 
 function routes() {
     return (
@@ -17,6 +18,7 @@ function routes() {
                 <Route path='/voluntarios/:idVoluntario' element={<GerenciaVoluntario />} />
                 <Route path='/listaVoluntarios' element={<ListaVoluntarios />} />
                 <Route path='/certificados' element={<Certificados />} />
+                <Route path='/certificadosLogOut' element={<CertificadosLogOut />} />
                 <Route path='/voluntario/:idVoluntario/certificados' element={<EmissaoCertificado />} />
                 <Route path='*' element={<h1>Not found</h1>} />
             </Routes>

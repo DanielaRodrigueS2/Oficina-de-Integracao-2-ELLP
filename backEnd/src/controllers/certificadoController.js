@@ -59,7 +59,7 @@ module.exports = {
             );
             doc.moveDown(2);
             doc.text(`Data de Emissão: ${dataEmissao}`, { align: "right" });
-            doc.text("Coordenação de Extensão - UTFPR", { align: "right" });
+            doc.text("Coordenação ELLP - UTFPR", { align: "right" });
 
             doc.end();
 

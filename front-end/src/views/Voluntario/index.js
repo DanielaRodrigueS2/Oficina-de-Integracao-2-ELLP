@@ -1,10 +1,11 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import styles from "./Voluntario.module.css";
 import Header from "../../components/Header";
 import api from "../../services/api";
 
 export default function Voluntario() {
+  const navigate = useNavigate();
   const { idVoluntario } = useParams();
 
   const [nome, setNome] = useState("");
@@ -56,6 +57,7 @@ export default function Voluntario() {
         await api.post("/voluntarios", voluntario);
         alert("Voluntário criado com sucesso!");
       }
+      navigate("/listaVoluntarios");
     } catch (error) {
       alert("Erro ao salvar voluntário");
     }
@@ -66,7 +68,7 @@ export default function Voluntario() {
       <Header />
 
       <div className={styles.formContainer}>
-        <h2 className={styles.title}>Voluntário</h2>
+        <h2 className={styles.title}>Cadastrar Voluntário</h2>
         <form className={styles.form} onSubmit={handleSubmit}>
           <label>Nome</label>
           <input type="text" value={nome} onChange={e => setNome(e.target.value)} />
@@ -95,7 +97,6 @@ export default function Voluntario() {
               <input type="text" value={curso} onChange={e => setCurso(e.target.value)} />
             </div>
             <div className={styles.radioGroup}>
-              <label>Situação</label>
               <div>
                 <div className={styles.radioGroup}>
                   <label>Situação</label>
@@ -137,12 +138,21 @@ export default function Voluntario() {
 
           <div className={styles.buttonGroup}>
             <button className={styles.btnCadastrar} type="submit">Cadastrar</button>
-            <Link to="/ListaVoluntarios">
+            <Link to="/listaVoluntarios">
               <button className={styles.btnLista}>Lista de voluntários</button>
             </Link>
-            <Link to="/Home">
-              <button className={styles.btnCancelar}>Cancelar</button>
-            </Link>
+            <button
+              type="button"
+              className={styles.btnCancelar}
+              onClick={() => {
+                const confirmar = window.confirm("Tem certeza que deseja cancelar? Todas as alterações serão perdidas.");
+                if (confirmar) {
+                  navigate("/home");
+                }
+              }}
+            >
+              Cancelar
+            </button>
           </div>
         </form>
       </div>
