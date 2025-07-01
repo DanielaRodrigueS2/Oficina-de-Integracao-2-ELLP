@@ -1,18 +1,12 @@
 import { useState } from "react";
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid as MuiDataGrid } from "@mui/x-data-grid";
 import { Box, TextField } from "@mui/material";
 
-const columns = [
-];
-
-const rows = [
-];
-
-export default function TabelaVoluntarios() {
+export default function DataGrid({ rows, columns, onRowClick }) {
   const [search, setSearch] = useState("");
 
   const filteredRows = rows.filter((row) =>
-    row.nome.toLowerCase().includes(search.toLowerCase())
+    row.nome?.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
@@ -26,11 +20,13 @@ export default function TabelaVoluntarios() {
         onChange={(e) => setSearch(e.target.value)}
       />
 
-      <Box sx={{ height: 400 }}>
-        <DataGrid
+      <Box sx={{ height: 500 }}>
+        <MuiDataGrid
           rows={filteredRows}
           columns={columns}
           pageSize={5}
+          rowsPerPageOptions={[5]}
+          onRowClick={onRowClick}
           disableRowSelectionOnClick
         />
       </Box>

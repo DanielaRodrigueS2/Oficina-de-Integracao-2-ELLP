@@ -11,11 +11,11 @@ function routes() {
         <BrowserRouter>
             <Routes>
                 <Route path='/' element={<Login />} />
-                <Route path='/Home' element={<Home />} />
-                <Route path='/Voluntario' element={<Voluntario />} />
-                <Route path='/ListaVoluntarios' element={<ListaVoluntarios />} />
-                <Route path='/Certificados' element={<Certificados />} />
-                <Route path='/EmissaoCertificado' element={<EmissaoCertificado />} />
+                <Route path='/home' element={<Home />} />
+                <Route path='/voluntario' element={<Voluntario />} />
+                <Route path='/listaVoluntarios' element={<ListaVoluntarios />} />
+                <Route path='/certificados' element={<Certificados />} />
+                <Route path='/emissaoCertificado' element={<EmissaoCertificado />} />
                 <Route path='*' element={<h1>Not found</h1>} />
             </Routes>
         </BrowserRouter>
