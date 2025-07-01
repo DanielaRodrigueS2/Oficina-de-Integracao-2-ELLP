@@ -26,7 +26,7 @@ export default function Login() {
           <div className={styles.textblock}>
             <p>Sistema de Certificado</p>
             <p>dos Voluntários do</p>
-            <p>projeto ELLP</p>
+            <p>Projeto ELLP</p>
           </div>
         </div>
       </div>
