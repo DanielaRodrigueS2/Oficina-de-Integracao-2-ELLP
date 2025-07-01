@@ -105,4 +105,55 @@ module.exports = {
         }
     },
 
+    async editarVoluntario(req,res){
+        try{
+            const {idVoluntario} = req.params;
+            
+            const docRef = db.collection('voluntarios').doc(idVoluntario);
+            const doc = await docRef.get();
+
+            if(!doc.exists) return res.status(404).json({error: 'Voluntário não foi encontrado'});
+
+            await voluntarioSchema.validate(req.body);
+
+            const {nome, RA, CPF, curso, telefone, departamento, email, funcao, situacao} = req.body;
+
+            const cpfExiste = await db.collection('voluntarios')
+            .where('CPF', '==', CPF)
+            .where('__name__', '!=', idVoluntario)
+            .get();
+
+            if(!cpfExiste.empty) return res.status(409).json({error: 'CPF já cadastrado em outro voluntário'})
+
+            const raExiste = await db.collection('voluntarios')
+            .where('RA', '==', RA)
+            .where('__name__', '!=', idVoluntario)
+            .get()
+            
+            if (!raExiste.empty){
+                return res.status(409).json({error: 'RA já está cadastrado no ssitema'})
+            }
+
+            const dadosAtualizados = {
+                nome,
+                RA,
+                CPF,
+                curso,
+                telefone,
+                departamento,
+                email,
+                funcao,
+                situacao,
+                atualizacao: new Date()
+            };
+
+            await docRef.update(dadosAtualizados);
+            return res.json({id: idVoluntario, ...dadosAtualizados})
+
+        }
+        catch(error){
+            return res.status(500).json({error: 'Erro ao editar esse voluntário', msg: error.message})
+        }
+    }
+
 };
