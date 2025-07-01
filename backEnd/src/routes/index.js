@@ -17,5 +17,6 @@ router.get('/voluntarios/:idVoluntario/certificados', controleCertificado.listar
 router.get('/certificados', controleCertificado.listarTodosCertificados);
 router.get('/certificados/:idVoluntario/:idCertificado', controleCertificado.getCertificado);
 router.delete('/certificados/:idVoluntario/:idCertificado', controleCertificado.deletarCertificado);
+router.get('/certificados/download/:idVoluntario/:idCertificado', controleCertificado.downloadCertificado);
 
 module.exports = router;

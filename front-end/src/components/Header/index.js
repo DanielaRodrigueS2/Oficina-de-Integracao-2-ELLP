@@ -8,10 +8,10 @@ export default function Header() {
                 <img src="/images/Logotipo (Transparente) (1).png" alt="Logo ELLP" className={styles.logoImg} />
             </Link>
             <div className={styles.buttongroup}>
-                <Link to='/Voluntario'>
+                <Link to='/voluntario'>
                 <button className={styles.btn}>Voluntários</button>
                 </Link>
-                <Link to='/Certificados'>
+                <Link to='/certificados'>
                 <button className={styles.btn}>Certificados</button>
                 </Link>
             </div>

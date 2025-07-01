@@ -22,13 +22,18 @@ export default function Certificados() {
           variant="contained"
           color="primary"
           size="small"
-          onClick={() => window.open(params.row.urlPDF, "_blank")}
-          disabled={!params.row.urlPDF}
+          onClick={() =>
+            window.open(
+              `${import.meta.env.VITE_API_BASE_URL || "http://localhost:3000"}/certificados/download/${params.row.idVoluntario}/${params.row.id}`,
+              "_blank"
+            )
+          }
         >
           Baixar PDF
         </Button>
       ),
-    },
+    }
+
   ];
 
   useEffect(() => {

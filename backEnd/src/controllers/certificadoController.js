@@ -98,19 +98,22 @@ module.exports = {
     // Lista todos os certificados
     async listarTodosCertificados(req, res) {
         try {
-            const snapshot = await db.collectionGroup('certificados').get()
+            const snapshot = await db.collectionGroup('certificados').get();
 
-            const certificados = snapshot.docs.map(doc => ({
-                id: doc.id,
-                ...doc.data()
+            const certificados = snapshot.docs.map(doc => {
+                const pathSegments = doc.ref.path.split('/');
+                const idVoluntario = pathSegments[pathSegments.indexOf('voluntarios') + 1];
 
-            }))
+                return {
+                    id: doc.id,
+                    idVoluntario,
+                    ...doc.data(),
+                };
+            });
 
-            return res.json(certificados)
-        }
-        catch (erro) {
-            return res.status(500).json({ error: 'Erro ao listar todooos os certificados ', msg: erro.message })
-
+            return res.json(certificados);
+        } catch (erro) {
+            return res.status(500).json({ error: 'Erro ao listar todos os certificados', msg: erro.message });
         }
     },
 
@@ -157,5 +160,39 @@ module.exports = {
         }
     },
 
+    async downloadCertificado(req, res) {
+        const { idVoluntario, idCertificado } = req.params;
+
+        const certSnap = await db
+            .collection('voluntarios')
+            .doc(idVoluntario)
+            .collection('certificados')
+            .doc(idCertificado)
+            .get();
+
+        if (!certSnap.exists) {
+            return res.status(404).json({ error: "Certificado não encontrado" });
+        }
+
+        const cert = certSnap.data();
+
+        const doc = new PDFDocument();
+        res.setHeader("Content-Type", "application/pdf");
+        res.setHeader("Content-Disposition", `attachment; filename=certificado-${idVoluntario}.pdf`);
+        doc.pipe(res);
+
+        doc.fontSize(22).text("Certificado de Participação", { align: "center" });
+        doc.moveDown();
+        doc.fontSize(12).text(
+            `Certificamos que ${cert.nomeVoluntario} (RA: ${cert.RA}), do curso de ${cert.curso}, ` +
+            `participou da oficina "${cert.oficina}" com carga horária de ${cert.cargaHoraria} horas, ` +
+            `no período de ${cert.inicio} a ${cert.fim}.`
+        );
+        doc.moveDown(2);
+        doc.text(`Data de Emissão: ${cert.dataEmissao}`, { align: "right" });
+        doc.text("Coordenação de Extensão - UTFPR", { align: "right" });
+
+        doc.end();
+    }
 
 };
