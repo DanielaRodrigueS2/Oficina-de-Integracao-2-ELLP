@@ -14,7 +14,7 @@ function routes() {
                 <Route path='/' element={<Login />} />
                 <Route path='/home' element={<Home />} />
                 <Route path='/voluntario' element={<Voluntario />} />
-                <Route path='/voluntario/:idVoluntario' element={<GerenciaVoluntario />} />
+                <Route path='/voluntarios/:idVoluntario' element={<GerenciaVoluntario />} />
                 <Route path='/listaVoluntarios' element={<ListaVoluntarios />} />
                 <Route path='/certificados' element={<Certificados />} />
                 <Route path='/voluntario/:idVoluntario/certificados' element={<EmissaoCertificado />} />

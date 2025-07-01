@@ -64,7 +64,7 @@ export default function ListaVoluntarios() {
   };
 
   const handleRowClick = (params) => {
-    navigate(`/voluntario/${params.id}`);
+    navigate(`/voluntarios/${params.id}`);
   };
 
   useEffect(() => {
