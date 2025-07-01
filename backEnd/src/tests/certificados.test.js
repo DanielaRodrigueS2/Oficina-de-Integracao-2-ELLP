@@ -25,7 +25,10 @@ describe('Testes da API de Certificados', () => {
 
   it('tenta criar um certificado para a voluntaria dani', async () => {
     const novoCertificado = {
-      semestre: "2024/2",
+      oficina: "Oficina de Lógica de Programação",
+      cargaHoraria: 10,
+      inicio: "2024-12-10",
+      fim: "2024-12-12",
       dataEmissao: "2024-12-20"
     };
 
@@ -33,10 +36,17 @@ describe('Testes da API de Certificados', () => {
       .post(`/voluntarios/${idVoluntario}/certificados`)
       .send(novoCertificado);
 
-    expect(res.status).toBe(201);
-    expect(res.body).toHaveProperty('id');
-    expect(res.body.semestre).toBe(novoCertificado.semestre);
-    idCertificado = res.body.id;
+    expect(res.status).toBe(200);
+
+    const lista = await request(app)
+      .get(`/voluntarios/${idVoluntario}/certificados`);
+
+    expect(res.headers['content-type']).toBe('application/pdf');
+    expect(res.body).toBeInstanceOf(Buffer);
+    expect(res.body.length).toBeGreaterThan(0);
+
+    idCertificado = lista.body[lista.body.length - 1].id;
+
   });
 
   it('tenta buscar o certificado pelo ID', async () => {
