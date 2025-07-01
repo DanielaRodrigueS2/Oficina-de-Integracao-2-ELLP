@@ -6,7 +6,7 @@ export default function DataGrid({ rows, columns, onRowClick }) {
   const [search, setSearch] = useState("");
 
   const filteredRows = rows.filter((row) =>
-    row.nome?.toLowerCase().includes(search.toLowerCase())
+    row.nomeVoluntario?.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
